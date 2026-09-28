@@ -76,14 +76,14 @@
             },
 
         });
-        
+
         $.getJSON("geojson/toponimi.geojson", function (data) {
             toponimi.addData(data); // Menambahkan data ke dalam GeoJSON Point toponimi
             map.addLayer(toponimi); // Menambahkan GeoJSON Point toponimi ke dalam peta
         });
 
 
-         // GeoJSON Polyline Jalan
+        // GeoJSON Polyline Jalan
         var jalan = L.geoJSON(null, {
             // Style
             style: function (feature) {
@@ -114,44 +114,44 @@
         });
 
         $.getJSON("geojson/jalan.geojson", function (data) {
-            jalan.addData(data); // Menambahkan data ke dalam GeoJSON Polyline Jalan
-            map.addLayer(jalan); // Menambahkan GeoJSON Polyline Jalan ke dalam peta
+            jalan.addData(data);
+            map.addLayer(jalan);
+            jalan.bringToFront();
         });
-        
-       
+
 
         // GeoJSON Polygon Jumlah Penduduk
         var jumlah_penduduk = L.geoJSON(null, {
             // Style
             style: function (feature) {
-	if (feature.properties.Penduduk <= 10000) {
-		return {
-			opacity: 1,
-			color: 'black',
-			weight: 1.0,
-			fillOpacity: 0.7,
-			fillColor: '#FFEEF8'
-		}
-	}
-	if (feature.properties.Penduduk > 10000 && feature.properties.Penduduk <= 20000) {
-		return {
-			opacity: 1,
-			color: 'black',
-			weight: 1.0,
-			fillOpacity: 0.7,
-			fillColor: '#FFA3DA'
-		}
-	}
-	if (feature.properties.Penduduk > 20000) {
-		return {
-			opacity: 1,
-			color: 'black',
-			weight: 1.0,
-			fillOpacity: 0.7,
-			fillColor: '#FF6CC4'
-		}
-	}
-},
+                if (feature.properties.Penduduk <= 10000) {
+                    return {
+                        opacity: 1,
+                        color: 'black',
+                        weight: 1.0,
+                        fillOpacity: 0.7,
+                        fillColor: '#FFEEF8'
+                    }
+                }
+                if (feature.properties.Penduduk > 10000 && feature.properties.Penduduk <= 20000) {
+                    return {
+                        opacity: 1,
+                        color: 'black',
+                        weight: 1.0,
+                        fillOpacity: 0.7,
+                        fillColor: '#FFA3DA'
+                    }
+                }
+                if (feature.properties.Penduduk > 20000) {
+                    return {
+                        opacity: 1,
+                        color: 'black',
+                        weight: 1.0,
+                        fillOpacity: 0.7,
+                        fillColor: '#FF6CC4'
+                    }
+                }
+            },
             // onEachFeature
             onEachFeature: function (feature, layer) {
                 // variable popup content
@@ -176,9 +176,9 @@
             map.addLayer(jumlah_penduduk); // Menambahkan GeoJSON Polygon Jumlah Penduduk ke dalam peta
         });
 
-       
 
-        
+
+
 
 
 
