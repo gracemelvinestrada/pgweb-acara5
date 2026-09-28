@@ -83,41 +83,7 @@
         });
 
 
-        // GeoJSON Polyline Jalan
-        var jalan = L.geoJSON(null, {
-            // Style
-            style: function (feature) {
-                return {
-                    color: "#7F25E0",
-                    opacity: 1,
-                    weight: 3,
-                };
-            },
-            // onEachFeature
-            onEachFeature: function (feature, layer) {
-                // variable popup content
-                var popup_content = "Fungsi: " + feature.properties.NAMA_UNSUR + "<br>" +
-                    "Panjang (m): " + feature.properties.panjang_km;
 
-                layer.on({
-                    click: function (e) {
-                        jalan.bindPopup(popup_content);
-                    },
-                    mouseover: function (e) {
-                        jalan.bindTooltip(feature.properties.NAMA_UNSUR, {
-                            direction: "auto",
-                            sticky: true,
-                        });
-                    },
-                });
-            },
-        });
-
-        $.getJSON("geojson/jalan.geojson", function (data) {
-            jalan.addData(data);
-            map.addLayer(jalan);
-            jalan.bringToFront();
-        });
 
 
         // GeoJSON Polygon Jumlah Penduduk
@@ -177,7 +143,41 @@
             jalan.bringToFront();
         });
 
+        // GeoJSON Polyline Jalan
+        var jalan = L.geoJSON(null, {
+            // Style
+            style: function (feature) {
+                return {
+                    color: "#7F25E0",
+                    opacity: 1,
+                    weight: 3,
+                };
+            },
+            // onEachFeature
+            onEachFeature: function (feature, layer) {
+                // variable popup content
+                var popup_content = "Fungsi: " + feature.properties.NAMA_UNSUR + "<br>" +
+                    "Panjang (m): " + feature.properties.panjang_km;
 
+                layer.on({
+                    click: function (e) {
+                        jalan.bindPopup(popup_content);
+                    },
+                    mouseover: function (e) {
+                        jalan.bindTooltip(feature.properties.NAMA_UNSUR, {
+                            direction: "auto",
+                            sticky: true,
+                        });
+                    },
+                });
+            },
+        });
+
+        $.getJSON("geojson/jalan.geojson", function (data) {
+            jalan.addData(data);
+            map.addLayer(jalan);
+            jalan.bringToFront();
+        });
 
 
 
