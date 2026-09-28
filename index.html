@@ -172,8 +172,9 @@
             },
         });
         $.getJSON("geojson/jumlah_penduduk.geojson", function (data) {
-            jumlah_penduduk.addData(data); // Menambahkan data ke dalam GeoJSON Polygon Jumlah Penduduk
-            map.addLayer(jumlah_penduduk); // Menambahkan GeoJSON Polygon Jumlah Penduduk ke dalam peta
+            jumlah_penduduk.addData(data);
+            map.addLayer(jumlah_penduduk);
+            jalan.bringToFront();
         });
 
 
