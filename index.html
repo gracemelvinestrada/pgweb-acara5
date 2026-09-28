@@ -76,6 +76,11 @@
             },
 
         });
+        
+        $.getJSON("geojson/toponimi.geojson", function (data) {
+            toponimi.addData(data); // Menambahkan data ke dalam GeoJSON Point toponimi
+            map.addLayer(toponimi); // Menambahkan GeoJSON Point toponimi ke dalam peta
+        });
 
 
          // GeoJSON Polyline Jalan
@@ -113,10 +118,7 @@
             map.addLayer(jalan); // Menambahkan GeoJSON Polyline Jalan ke dalam peta
         });
         
-        $.getJSON("geojson/toponimi.geojson", function (data) {
-            toponimi.addData(data); // Menambahkan data ke dalam GeoJSON Point toponimi
-            map.addLayer(toponimi); // Menambahkan GeoJSON Point toponimi ke dalam peta
-        });
+       
 
         // GeoJSON Polygon Jumlah Penduduk
         var jumlah_penduduk = L.geoJSON(null, {
