@@ -78,6 +78,41 @@
         });
 
 
+         // GeoJSON Polyline Jalan
+        var jalan = L.geoJSON(null, {
+            // Style
+            style: function (feature) {
+                return {
+                    color: "#7F25E0",
+                    opacity: 1,
+                    weight: 3,
+                };
+            },
+            // onEachFeature
+            onEachFeature: function (feature, layer) {
+                // variable popup content
+                var popup_content = "Fungsi: " + feature.properties.NAMA_UNSUR + "<br>" +
+                    "Panjang (m): " + feature.properties.panjang_km;
+
+                layer.on({
+                    click: function (e) {
+                        jalan.bindPopup(popup_content);
+                    },
+                    mouseover: function (e) {
+                        jalan.bindTooltip(feature.properties.NAMA_UNSUR, {
+                            direction: "auto",
+                            sticky: true,
+                        });
+                    },
+                });
+            },
+        });
+
+        $.getJSON("geojson/jalan.geojson", function (data) {
+            jalan.addData(data); // Menambahkan data ke dalam GeoJSON Polyline Jalan
+            map.addLayer(jalan); // Menambahkan GeoJSON Polyline Jalan ke dalam peta
+        });
+        
         $.getJSON("geojson/toponimi.geojson", function (data) {
             toponimi.addData(data); // Menambahkan data ke dalam GeoJSON Point toponimi
             map.addLayer(toponimi); // Menambahkan GeoJSON Point toponimi ke dalam peta
@@ -139,40 +174,7 @@
             map.addLayer(jumlah_penduduk); // Menambahkan GeoJSON Polygon Jumlah Penduduk ke dalam peta
         });
 
-        // GeoJSON Polyline Jalan
-        var jalan = L.geoJSON(null, {
-            // Style
-            style: function (feature) {
-                return {
-                    color: "#7F25E0",
-                    opacity: 1,
-                    weight: 3,
-                };
-            },
-            // onEachFeature
-            onEachFeature: function (feature, layer) {
-                // variable popup content
-                var popup_content = "Fungsi: " + feature.properties.NAMA_UNSUR + "<br>" +
-                    "Panjang (m): " + feature.properties.panjang_km;
-
-                layer.on({
-                    click: function (e) {
-                        jalan.bindPopup(popup_content);
-                    },
-                    mouseover: function (e) {
-                        jalan.bindTooltip(feature.properties.NAMA_UNSUR, {
-                            direction: "auto",
-                            sticky: true,
-                        });
-                    },
-                });
-            },
-        });
-
-        $.getJSON("geojson/jalan.geojson", function (data) {
-            jalan.addData(data); // Menambahkan data ke dalam GeoJSON Polyline Jalan
-            map.addLayer(jalan); // Menambahkan GeoJSON Polyline Jalan ke dalam peta
-        });
+       
 
         
 
